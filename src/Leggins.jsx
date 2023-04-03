@@ -15,4 +15,6 @@ export function Model(props) {
   )
 }
 
+export default Model
+
 useGLTF.preload('/leggins.glb')

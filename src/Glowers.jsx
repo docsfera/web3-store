@@ -10,9 +10,11 @@ export function Model(props) {
   const { nodes, materials } = useGLTF('/glowers.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.glow.geometry} material={materials.Material4} />
+      <mesh geometry={nodes.glow.geometry} material={materials.Material4} position={[0.12, 0.1, 0.25]} rotation={[-0.1, -0.53, 0.1]} />
     </group>
   )
 }
+
+export default Model
 
 useGLTF.preload('/glowers.glb')
