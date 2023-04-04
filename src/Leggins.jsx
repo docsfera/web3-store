@@ -9,9 +9,25 @@ import { useGLTF } from '@react-three/drei'
 export function Model(props) {
   const { nodes, materials } = useGLTF('/leggins.glb')
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.pants.geometry} material={materials['Material.005']} />
-    </group>
+      <group {...props} dispose={null}>
+
+              {
+              props.isRed && <mesh geometry={nodes.pants.geometry} material={materials['Material.001']} />
+          }
+          {
+              props.isYellow && <mesh geometry={nodes.pants001.geometry} material={materials['Material.004']} />
+          }
+          {
+              props.isBlue && <mesh geometry={nodes.pants002.geometry} material={materials['Material.007']} />
+          }
+          {
+              props.isBlack && <mesh geometry={nodes.BLACK.geometry} material={materials['Material.009']} />
+          }
+          {
+              props.isGreen && <mesh geometry={nodes.BLACK001.geometry} material={materials['Material.011']} />
+          }
+          {/*<mesh geometry={nodes.pants.geometry}/>*/}
+      </group>
   )
 }
 
