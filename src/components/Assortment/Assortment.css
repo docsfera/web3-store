@@ -1,0 +1,25 @@
+.assortment{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 100px;
+    right: 200px;
+    width: 600px;
+    height: 70vh;
+    background: #FFF;
+}
+.assortment.assortment-show{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 1200px) {
+    .assortment{
+        right: 0;
+    }
+}
+@media (max-width: 900px) {
+    .assortment{
+        display: none;
+    }
+}

@@ -11,6 +11,9 @@ import {changeColor, mainSelector, hideCard} from "../../store/mainSlice"
 const Card = () => {
     const dispatch = useDispatch()
     const {currentClothing, typeCurrentCard} = useSelector(mainSelector)
+    const isColorActive = (color) => {
+        return currentClothing[typeCurrentCard].color === color
+    }
 
     const changeColorEvent = (color) => {
         dispatch(changeColor({type: typeCurrentCard, color}))
@@ -41,27 +44,27 @@ const Card = () => {
                 </div>
                 <div className="card__colors">
                     <div
-                        className={cn("card__color card__color-1", {"active": currentClothing.pants.color === "red"})}
+                        className={cn("card__color card__color-1", {"active": isColorActive("red")})}
                         onClick={() => changeColorEvent("red")}>
 
                     </div>
                     <div
-                        className={cn("card__color card__color-2", {"active": currentClothing.pants.color === "green"})}
+                        className={cn("card__color card__color-2", {"active": isColorActive("green")})}
                         onClick={() => changeColorEvent("green")}>
 
                     </div>
                     <div
-                        className={cn("card__color card__color-3", {"active": currentClothing.pants.color === "blue"})}
+                        className={cn("card__color card__color-3", {"active": isColorActive("blue")})}
                         onClick={() => changeColorEvent("blue")}>
 
                     </div>
                     <div
-                        className={cn("card__color card__color-4", {"active": currentClothing.pants.color === "yellow"})}
+                        className={cn("card__color card__color-4", {"active": isColorActive("yellow")})}
                         onClick={() => changeColorEvent("yellow")}>
 
                     </div>
                     <div
-                        className={cn("card__color card__color-5", {"active": currentClothing.pants.color === "black"})}
+                        className={cn("card__color card__color-5", {"active": isColorActive("black")})}
                         onClick={() => changeColorEvent("black")}>
 
                     </div>

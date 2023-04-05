@@ -29,21 +29,8 @@ root.render(
                     background: "url('store.jpg') no-repeat center",
 
                 },
-                canvas:{
-                    position: 'absolute',
-                    width: '50vw',
-                    height: '50vh'
-                },
-                '.main' :{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    position: "absolute",
-                    top: "100px",
-                    right: "200px",
-                    width: "600px",
-                    height: "70vh",
-                    background: "#FFF",
-                },
+
+
                 '.test':{
                     width: "180px",
                     height: "260px",

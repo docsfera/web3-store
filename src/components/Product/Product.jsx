@@ -16,7 +16,7 @@ const Product = (props) => {
 
     return (
         <div className={cn("test", {"staff-active": isActive})} onClick={() => dispatch(selectProduct(props.name))}>
-            <div className="staff leggins" >
+            <div className="staff leggins" onClick={(e) => e.stopPropagation()} >
                 <Canvas className="staff__canvas">
 
                     <OrbitControls enableZoom={false} maxPolarAngle={2} minPolarAngle={1}/>
