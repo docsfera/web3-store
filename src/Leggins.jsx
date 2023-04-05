@@ -5,28 +5,31 @@ Command: npx gltfjsx@6.1.4 leggins.glb
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import {useSelector} from "react-redux"
+import {mainSelector} from "./store/mainSlice"
 
 export function Model(props) {
   const { nodes, materials } = useGLTF('/leggins.glb')
+  const {currentClothing} = useSelector(mainSelector)
+
   return (
       <group {...props} dispose={null}>
 
-              {
-              props.isRed && <mesh geometry={nodes.pants.geometry} material={materials['Material.001']} />
+          {
+              (currentClothing.pants.color === "red") && <mesh geometry={nodes.pants.geometry} material={materials['Material.001']} />
           }
           {
-              props.isYellow && <mesh geometry={nodes.pants001.geometry} material={materials['Material.004']} />
+              (currentClothing.pants.color === "yellow") && <mesh geometry={nodes.pants001.geometry} material={materials['Material.004']} />
           }
           {
-              props.isBlue && <mesh geometry={nodes.pants002.geometry} material={materials['Material.007']} />
+              (currentClothing.pants.color === "blue") && <mesh geometry={nodes.pants002.geometry} material={materials['Material.007']} />
           }
           {
-              props.isBlack && <mesh geometry={nodes.BLACK.geometry} material={materials['Material.009']} />
+              (currentClothing.pants.color === "black") && <mesh geometry={nodes.BLACK.geometry} material={materials['Material.009']} />
           }
           {
-              props.isGreen && <mesh geometry={nodes.BLACK001.geometry} material={materials['Material.011']} />
+              (currentClothing.pants.color === "green") && <mesh geometry={nodes.BLACK001.geometry} material={materials['Material.011']} />
           }
-          {/*<mesh geometry={nodes.pants.geometry}/>*/}
       </group>
   )
 }

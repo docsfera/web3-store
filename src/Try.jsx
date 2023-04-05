@@ -5,15 +5,33 @@ Command: npx gltfjsx@6.1.4 try.glb
 
 import React, {useEffect, useRef} from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import {useSelector} from "react-redux"
+import {mainSelector} from "./store/mainSlice"
 
 export function Model(props) {
   const group = useRef()
+  const leggins = useGLTF('/leggins.glb')
   const { nodes, materials, animations } = useGLTF('/try.glb')
   const { actions } = useAnimations(animations, group)
-  console.log(actions)
+
+  const {currentClothing} = useSelector(mainSelector)
+
+  const materialsPants = {
+    "red": "Material.001",
+    "blue": "Material.007",
+    "green": "Material.011",
+    "yellow": "Material.004",
+    "black": "Material.009"
+  }
+  const selectedPantsMaterial = materialsPants[currentClothing.pants.color]
+  const selectedBolkMaterial = materialsPants[currentClothing.bolk.color]
+
   useEffect(() => {
     actions['Armature|mixamo.com|Layer0'].play()
   })
+
+
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
@@ -21,12 +39,12 @@ export function Model(props) {
           <primitive object={nodes.mixamorigHips} />
           <skinnedMesh name="BaseMesh_Female004" geometry={nodes.BaseMesh_Female004.geometry} material={nodes.BaseMesh_Female004.material} skeleton={nodes.BaseMesh_Female004.skeleton} />
           {
-            props.isBolka &&
-            <skinnedMesh name="bolk" geometry={nodes.bolk.geometry} material={materials['Material.006']} skeleton={nodes.bolk.skeleton} />
+            currentClothing.bolk.isCurrent &&
+            <skinnedMesh name="bolk" geometry={nodes.bolk.geometry} material={leggins.materials[selectedBolkMaterial]} skeleton={nodes.bolk.skeleton} />
           }
           {
-            props.isLeggins &&
-            <skinnedMesh name="pants" geometry={nodes.pants.geometry} material={materials['Material.005']} skeleton={nodes.pants.skeleton} />
+            currentClothing.pants.isCurrent &&
+            <skinnedMesh name="pants" geometry={nodes.pants.geometry} material={leggins.materials[selectedPantsMaterial]} skeleton={nodes.pants.skeleton} />
           }
           {
             props.isWrist &&
